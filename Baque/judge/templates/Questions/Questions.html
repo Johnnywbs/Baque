@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../colors.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            background-color: #D5BA98;
+        }
+
+        .navbar{
+            background-color: black;
+            padding: 0;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .navbar-brand {
+            color: white;
+            transition: color 0.2s, text-decoration 0.2s;
+            margin: 0px 30px 0px 30px;
+        }
+
+        .table-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .navbar-header{
+            width:   100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar-brand:hover,
+        .navbar-brand:focus {
+            color: #25AFE4;
+            text-decoration: underline;
+        }
+        .table{
+            background-color: #d9d9d9;
+            width: fit-content;
+        }
+        .table-container
+        table td{
+            font-size: 12px;
+            border: 0;
+        }
+        table th{
+            font-size: 15px;
+            border: 0;
+        }
+        table tr{
+            font-size: 15px;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">INÍCIO</a>
+            <a class="navbar-brand" href="#">QUESTÕES</a>
+            <a class="navbar-brand" href="#">LISTA</a>
+            <a class="navbar-brand" href="#">CRIAÇÃO</a>
+            <a class="navbar-brand" href="#">PERFIL</a>
+            <a class="navbar-brand" href="#">SUBMISSÕES</a>
+            <a class="navbar-brand" href="#">RANKING</a>
+            <a class="navbar-brand" href="#">GRUPOS</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>C. Division</h2>
+            <p>Time Limit: 1 seconds</p>
+            <p>Memory Limit: 512 MB</p>
+            
+            <div class="border rounded p-3 mb-4">
+                <h4>Problem Statement</h4>
+                <p>
+                    Oleg's favorite subjects are History and Math, and his favorite branch of mathematics is division.
+                    To improve his division skills, Oleg came up with \(t\) pairs of integers \(p_{i}\) and  \(q_{i}\) and for each pair decided to find the greatest integer \(x_{i}\), such that:
+                    <ul>
+                    <li>\(p_{i}\) is divisible by \(x_{i}\)</li>
+                    <li>\(x_{i}\) is not divisible by \(q_{i}\).</li>
+                    </ul>
+                    Oleg is really good at division and managed to find all the answers quickly, how about you?
+                    
+            
+            </div>
+
+            <h4>Input</h4>
+            <p>Input
+                The first line contains an integer \(t  ( 1\leq t \leq 50 ) \) — the number of pairs.
+                Each of the following \(t \)  lines contains two integers \(p_{i}\) and \(q_{i}\) \( (1 \leq p_{i} \leq 10^{18} )\);\( (2 \leq q_{i} \leq 10^{9} )\) — the \(i \)-th pair of integers.</p>
+
+            <h4>Output</h4>
+            <p>                    
+            Print \(t\)  integers: the \(i\)-th integer is the largest \(x_{i}\)  such that \(p_{i}\) is divisible by \(x_{i}\), but \(x_{i}\) is not divisible by \(q_i\).
+                One can show that there is always at least one value of \(x_{i}\) satisfying the divisibility conditions for the given constraints.</p>
+
+            <h4>Example</h4>
+            <pre>
+Input:
+5
+1 2 3 4 5
+
+Output:
+15
+            </pre>
+        </div>
+        <div class="col-md-4">
+            <h2>Submit Solution</h2>
+            <form action="#" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="fileUpload">Choose a file</label>
+                    <input type="file" class="form-control-file" id="fileUpload" name="fileUpload" required>
+                </div>
+                <div class="form-group">
+                    <label for="compilerSelect">Select Compiler</label>
+                    <select class="form-control" id="compilerSelect" name="compilerSelect" required>
+                        <option value="cpp">C++</option>
+                        <option value="java">Java</option>
+                        <option value="python">Python</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
