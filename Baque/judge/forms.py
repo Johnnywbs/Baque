@@ -1,8 +1,7 @@
 from django import forms
-from . import models
+from .models import Problem
 
-class criar_questaoForm(forms.ModelForm):
-
+class ProblemForm(forms.ModelForm):
     class Meta:
-        model = ""
+        model = Problem
         fields = "__all__"
