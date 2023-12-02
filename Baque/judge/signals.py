@@ -1,9 +1,13 @@
 import subprocess
 
-def run_code(code, input_data):
-    process = subprocess.Popen(['python', '-c', code], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    stdout, stderr = process.communicate(input_data)
-    return stdout, stderr
+def run_code(code, input_data, timelimit):
+    try:
+        stdout = subprocess.check_output(['python', '-c', code], input=input_data, stderr=subprocess.STDOUT, text=True, timeout=timelimit/1000)
+        return stdout, ''
+    except subprocess.CalledProcessError:
+        return '', 'RTE'
+    except subprocess.TimeoutExpired:
+        return '', 'TLE'
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -15,19 +19,31 @@ def run_test_cases(sender, instance, **kwargs):
     problem = submission.problem
     test_cases = TestCase.objects.filter(problem=problem)
 
-    for test_case in test_cases:
-        input_data = test_case.input_data
-        expected_output = test_case.expected_output
+    for case in test_cases:
+        input_data = case.input_data
+        expected_output = case.expected_output
 
         code = ""
-        with open(submission.code.path, 'r') as file:
-            code = file.read()
+        with open(submission.code.path, 'r') as file: code = file.read()
 
-        actual_output, error_output = run_code(code, input_data)
-        actual_output = ' '.join(actual_output.split())
-        expected_output = ' '.join(expected_output.split())
+        actual_output, err = run_code(code, input_data, submission.problem.timelimit)
+        if err == 'TLE':
+            verdict = 'time_limit_exceeded'
+        elif err == 'RTE':
+            verdict = 'runtime_error'
+            actual_output = err
+        else:
+            actual_output = ' '.join(actual_output.split())
+            expected_output = ' '.join(expected_output.split())
+            passed = actual_output == expected_output
+            verdict = 'accepted' if passed else 'wrong_answer'
 
-        passed = actual_output == expected_output
-
-        Result.objects.create(submission=submission, testcase=test_case, passed=passed, actual_output=actual_output)
-
+        Result.objects.update_or_create(
+            submission=submission,
+            testcase=case,
+            defaults={
+                'passed' : verdict == 'accepted',
+                'actual_output': actual_output,
+                'verdict': verdict
+            }
+        )

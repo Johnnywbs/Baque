@@ -21,7 +21,7 @@
           <th>Input</th>
           <th>Expected Output</th>
           <th>Actual Output</th>
-          <th>Passed</th>
+          <th>Verdict</th>
         </tr>
       </thead>
       <tbody>
@@ -31,7 +31,7 @@
             <td>{{ result.testcase.input_data | linebreaks }}</td>
             <td>{{ result.testcase.expected_output | linebreaks }}</td>
             <td>{{ result.actual_output | linebreaks }}</td>
-            <td>{{ result.passed }}</td>
+            <td>{{ result.get_verdict_display }}</td>
           </tr>
         {% endfor %}
       </tbody>

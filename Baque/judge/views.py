@@ -27,10 +27,15 @@ def submission_list(request):
 
     return render(request, "judge/submission_list.html", {'submissions' : submission_data})
 
-def create(request):
+def edit(request, id=None):
+    if id is not None:
+        problem = get_object_or_404(Problem, id=id)
+    else:
+        problem = None
+
     if request.method == "POST":
-        form = ProblemForm(request.POST)
-        formset = ProblemFormSet(request.POST)
+        form = ProblemForm(request.POST, instance=problem)
+        formset = ProblemFormSet(request.POST, instance=problem)
 
         if form.is_valid() and formset.is_valid():
             problem = form.save()
@@ -38,10 +43,11 @@ def create(request):
             formset.save()
             return redirect('problem', problem.id)
     else:
-        form = ProblemForm()
-        formset = ProblemFormSet()
+        form = ProblemForm(instance=problem)
+        formset = ProblemFormSet(instance=problem)
 
-    return render(request, "judge/create.html", {'form': form, 'formset': formset})
+    return render(request, "judge/edit.html", {'form': form, 'formset': formset, 'problem': problem})
+
 
 
 def problem(request, id):

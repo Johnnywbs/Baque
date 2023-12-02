@@ -12,7 +12,7 @@ class TestCaseForm(forms.ModelForm):
             self.fields[field_name].widget.attrs.update({'class': 'form-control'})
 
 
-ProblemFormSet = forms.inlineformset_factory(Problem, TestCase, form=TestCaseForm, extra=10)
+ProblemFormSet = forms.inlineformset_factory(Problem, TestCase, form=TestCaseForm, extra=5)
 
 class ProblemForm(forms.ModelForm):
     class Meta:
