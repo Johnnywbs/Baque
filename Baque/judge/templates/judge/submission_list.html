@@ -1,0 +1,35 @@
+{% extends "judge/base.html" %}
+
+{% block content %}
+  <h2>Submission List</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Problem Name</th>
+          <th>Results</th>
+          <th>View</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in submissions %}
+          <tr>
+            <td>{{ s.id }}</td>
+            <td>{{ s.problem_name }}</td>
+            {% if s.passed_results == s.total_results %}
+            <td class="bg-success" style="color: white">
+              {% else %}
+            <td>
+              {% endif %}
+              {{ s.passed_results }}/{{ s.total_results }}
+            </td>
+            <td>
+              <a href="{% url 'submission' s.id %}" class="btn btn-primary">View</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

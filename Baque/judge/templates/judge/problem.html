@@ -1,127 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>BAQUE - {{problem.name}}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../colors.css">
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{% extends "judge/base.html" %}
 
-    <style>
-        body {
-            background-color: #D5BA98;
-        }
+{% block title %}
+{{problem.id}} - {{problem.name}}
+{% endblock %}
 
-        .navbar{
-            background-color: black;
-            padding: 0;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-        }
-        .navbar-brand {
-            color: white;
-            transition: color 0.2s, text-decoration 0.2s;
-            margin: 0px 30px 0px 30px;
-        }
-
-        .table-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .navbar-header{
-            width:   100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .navbar-brand:hover,
-        .navbar-brand:focus {
-            color: #25AFE4;
-            text-decoration: underline;
-        }
-        .table{
-            background-color: #d9d9d9;
-            width: fit-content;
-        }
-        .table-container
-        table td{
-            font-size: 12px;
-            border: 0;
-        }
-        table th{
-            font-size: 15px;
-            border: 0;
-        }
-        table tr{
-            font-size: 15px;
-            border: 0;
-        }
-    </style>
-</head>
-<body>
-
-<nav class="navbar navbar-default" role="navigation">
-    <div>
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">INÍCIO</a>
-            <a class="navbar-brand" href="#">QUESTÕES</a>
-            <a class="navbar-brand" href="#">LISTA</a>
-            <a class="navbar-brand" href="#">CRIAÇÃO</a>
-            <a class="navbar-brand" href="#">PERFIL</a>
-            <a class="navbar-brand" href="#">SUBMISSÕES</a>
-            <a class="navbar-brand" href="#">RANKING</a>
-            <a class="navbar-brand" href="#">GRUPOS</a>
-        </div>
-    </div>
-</nav>
-
+{% block content %}
 <div class="container mt-4">
-    <div class="row">
-        <div class="col-md-8">
-            <h2>{{problem.pk}} - {{problem.name}}</h2>
-            <p>Time Limit: {{problem.timelimit}} ms</p>
-            <p>Memory Limit: 512 MB</p>
-            
-            <div class="border rounded p-3 mb-4">
-                <h4>Problem Statement</h4>
-                <div>{{problem.statement | linebreaks }}</div>
-            </div>
+  <h1 class="mb-4">{{ problem.id }} - {{ problem.name }}</h1>
 
-            <h4>Input</h4>
-            <div>{{problem.input_format | linebreaks }}</div>
-            <h4>Output</h4>
-            <div>{{problem.output_format | linebreaks }}</div>
-            <h4>Example</h4>
-            <div>{{problem.example | linebreaks }}</div>
-        </div>
-        <div class="col-md-4">
-            <h2>Submit Solution</h2>
-            <form action="#" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="fileUpload">Choose a file</label>
-                    <input type="file" class="form-control-file" id="fileUpload" name="fileUpload" required>
-                </div>
-                <div class="form-group">
-                    <label for="compilerSelect">Select Compiler</label>
-                    <select class="form-control" id="compilerSelect" name="compilerSelect" required>
-                        <option value="cpp">C++</option>
-                        <option value="java">Java</option>
-                        <option value="python">Python</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div>
+  <div class="mb-4">
+    <h2>Problem Statement</h2>
+    <p>{{ problem.statement | linebreaks }}</p>
+  </div>
+
+  <div class="mb-4">
+    <h2>Input</h2>
+    <p>{{ problem.input_format | linebreaks }}</p>
+  </div>
+
+  <div class="mb-4">
+    <h2>Output</h2>
+    <p>{{ problem.output_format | linebreaks }}</p>
+  </div>
+
+  <div class="mb-4">
+    <h2>Example</h2>
+    <p>{{ problem.example | linebreaks }}</p>
+  </div>
+
+  <div class="mb-4">
+    <h2>Submit Solution</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{form}}
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+
 </div>
+{% endblock %}
 
-
-</body>
-</html>
