@@ -3,6 +3,18 @@
 
 {% block content %}
 {% load custom_filters %}
+<style>
+  .accepted {
+    color: #008000;
+}
+
+.not-accepted {
+    color: #CC0000;
+}
+.pending {
+    color: #FFD700; 
+}
+</style>
 <div class="container mt-4">
   <h1>{{ submission.problem.name }}</h1>
 
@@ -31,7 +43,7 @@
             <td>{{ result.testcase.input_data | linebreaks }}</td>
             <td>{{ result.testcase.expected_output | linebreaks }}</td>
             <td>{{ result.actual_output | linebreaks }}</td>
-            <td>{{ result.get_verdict_display }}</td>
+            <td class="{% if result.get_verdict_display == 'Accepted' %}accepted{% elif result.get_verdict_display == 'Pending' %}pending{% else %}not-accepted{% endif %}">{{ result.get_verdict_display }}</td>
           </tr>
         {% endfor %}
       </tbody>
