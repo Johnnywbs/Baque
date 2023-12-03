@@ -5,38 +5,47 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="container mt-4">
-  <h1 class="mb-4">{{ problem.id }} - {{ problem.name }}</h1>
+  <div class="row">
+      <div class="col-md-8">
+          <h2>{{ problem.id }} - {{ problem.name }}</h2>
+          <p>Time Limit: {{problem.timelimit}} ms</p>
+          
+          <div class="border rounded p-3 mb-4">
+              <h4>Problem Statement</h4>
+              <p>
+                {{ problem.statement | linebreaks }}
+              </p>
+                  
+          
+          </div>
 
-  <div class="mb-4">
-    <h2>Problem Statement</h2>
-    <p>{{ problem.statement | linebreaks }}</p>
+          <h4>Input</h4>
+          <p>Input
+            {{ problem.input_format | linebreaks }}
+          </p>
+
+          <h4>Output</h4>
+          <p>                    
+            {{ problem.output_format | linebreaks }}
+          </p>
+
+          <h4>Example</h4>
+          <pre>
+            {{ problem.example | linebreaks }}
+          </pre>
+      </div>
+      <div class="col-md-4">
+        <h2>Submit Solution</h2>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{form}}
+          <button style="margin-top: 10px;"type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
   </div>
-
-  <div class="mb-4">
-    <h2>Input</h2>
-    <p>{{ problem.input_format | linebreaks }}</p>
-  </div>
-
-  <div class="mb-4">
-    <h2>Output</h2>
-    <p>{{ problem.output_format | linebreaks }}</p>
-  </div>
-
-  <div class="mb-4">
-    <h2>Example</h2>
-    <p>{{ problem.example | linebreaks }}</p>
-  </div>
-
-  <div class="mb-4">
-    <h2>Submit Solution</h2>
-    <form method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{form}}
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
-
+</div>
 
 </div>
 {% endblock %}

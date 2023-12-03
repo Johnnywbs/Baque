@@ -2,7 +2,7 @@ import subprocess
 
 def run_code(code, input_data, timelimit):
     try:
-        stdout = subprocess.check_output(['python', '-c', code], input=input_data, stderr=subprocess.STDOUT, text=True, timeout=timelimit/1000)
+        stdout = subprocess.check_output(['python3', '-c', code], input=input_data, stderr=subprocess.STDOUT, text=True, timeout=timelimit/1000)
         return stdout, ''
     except subprocess.CalledProcessError:
         return '', 'RTE'
