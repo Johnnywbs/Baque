@@ -3,8 +3,238 @@
 {% block title %}Baque - Index{% endblock %}
 
 {% block content %}
-    <h1>Bem-vindo ao Baque!</h1>
-    <p>O Baque é um juiz de programação competitiva onde você pode aprimorar suas habilidades de resolução de problemas e algoritmos.</p>
+{% load static %}
+
+<style>
+
+.flex-container {
+    display: flex;
+    gap: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.flex-child {
+    flex: 1;
+    background-color: white;
+}
+
+hr{
+    border: 2px solid black;
+}
+
+.listTitle{
+    background-color: #D4AF3780;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+}
+
+.listTitle p {
+    flex-grow: 1;
+    color: black;
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.listItems {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.listItems a {
+    margin-left: 20px;
+    color: black;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.listGrid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.listGrid div {
+    flex-grow: 1;
+    flex-basis: 25%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: #D9D9D9;
+    margin: 16px;
+}
+
+.listGrid img {
+    aspect-ratio: 1/1;
+}
+
+.mainImage img{
+    width: 600px;
+}
+
+.mainText {
+    display: flex;
+    flex-direction: column;
+}
+
+.containerHeader {
+    display: flex;
+    margin: 20px;
+    gap: 20px;
+}
+
+.paginaInicial {
+    background-color: white;
+    padding: 20px;
+}
+
+.paginaInicial-title {
+    color: #000;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.paginaInicial-description {
+    color: #000;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.mainLinks {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    text-decoration: none;
+    margin-top: 30px;
+    flex-grow: 1;
+}
+
+.mainLinks span {
+    color: black;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.mainLinks:hover a {
+    text-decoration: none;
+}
+
+.mainLinks img {
+    width: 60px;
+    height: 60px;
+}
+
+.link{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10%;
+    background-color: white;
+    padding: 20px;
+    flex: 1;
+}
+
+.form-text {
+    margin-left: 20px;
+    color: black;
+    font-size: 30px;
+    font-weight: 500;
+}
+</style>
+<div class="containerHeader">
+    <div class="mainImage">
+        <img src="{% static 'link.jpg' %}"  alt="logo">
+    </div>
+    <div class="mainText">
+        <div class="paginaInicial">
+            <p class="paginaInicial-title">Página Inicial</p>
+            <hr>
+            <p class="paginaInicial-description">Encontre aqui as principais informações e materiais de Programação Competitiva!!</p>
+        </div>
+        <div class="mainLinks">
+                <a href="google.com" class="link">
+                    <img src="../../icons/githubLink.png" alt="">
+                    <span>Programação Competitiva</span>
+                </a>
+                <a href="google.com" class="link">
+                    <img src="../../icons/githubLink.png" alt="">
+                    <span>UnBaloon</span>
+                </a>
+                <a href="google.com" class="link">
+                    <img src="../../icons/baloonsLink.png" alt="">
+                    <span>UnBaloon</span>
+                </a>
+        </div>
+    </div>
+</div>
+<div class="flex-container">
+    <div class="flex-child">
+        <div class="listTitle">
+            <p>Materiais de Estudo</p>
+            <img src="../../icons/book.png" alt="book">
+        </div>
+        <div class="listItems">
+            <a href="https://unballoon.github.io/materiais/fundamentos/" target="_blank">Fundamentos da Linguagem C++</a>
+            <hr>
+            <a href="https://unballoon.github.io/materiais/fundamentos/complexidade/" target="_blank">Complexidade de Algoritmos</a>
+            <hr>
+            <a href="https://unballoon.github.io/materiais/fundamentos/declaracoes/string/" target="_blank">Strings, Vectors, Pairs, Iterators</a>
+            <hr>
+            <a href="https://unballoon.github.io/materiais/fundamentos/eds/" target="_blank">Estrutura de Dados Lineares e Não Lineares</a>
+            <hr>
+            <a href="https://unballoon.github.io/materiais/algoritmos/" target="_blank">Algoritmos</a>
+            <hr>
+            <a href="https://unballoon.github.io/materiais/matematica/" target="_blank">Matemática</a>
+            <hr>
+            <a href="https://unballoon.github.io/materiais/grafos/" target="_blank">Árvores e Grafos</a>
+            <hr>
+            <a href="https://unballoon.github.io/materiais/algoritmos/busca_binaria/" target="_blank">Ordenação</a>
+            <hr>
+            <a href="https://unballoon.github.io/materiais/avancados/" target="_blank">Programação Dinâmica</a>
+        </div>
+    </div>
+    <div class="flex-child">
+        <div class="listTitle">
+            <p class="bookimage">Links Importantes</p>
+            <img src="../../icons/link.png" alt="link">
+        </div>
+        <div class="listGrid">
+            <div>
+                <a href="https://icpc.global" target="_blank">
+                    <img src="../../icons/icpc.png" alt="icpc" >
+                </a>
+            </div>
+            <div>
+                <a href="https://olimpiada.ic.unicamp.br/" target="_blank">
+                    <img src="../../icons/obi.png" alt="obi" >
+                </a>
+            </div>
+            <div>
+                <a href="https://neps.academy/br" target="_blank">
+                    <img src="../../icons/neps.png" alt="neps" >
+                </a>
+            </div>
+            <div>
+                <a href="https://github.com/" target="_blank">
+                    <img src="../../icons/github.png" alt="github" >
+                </a>
+            </div>
+            <div>
+                <a href="https://www.youtube.com/@tmwilliamlin168" target="_blank">
+                    <img src="../../icons/einsten.png" alt="einsten">
+                </a>
+            </div>
+            <div>
+                <a href="https://cplusplus.com/" target="_blank">
+                    <img src="../../icons/c.png" alt="c">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
     <h2>Criadores</h2>
     <ul>
