@@ -25,20 +25,26 @@ hr{
     border: 2px solid black;
 }
 
-.listTitle{
+.listTitle {
     background-color: #D4AF3780;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px; 
     align-items: center;
 }
 
 .listTitle p {
     flex-grow: 1;
     color: black;
-    font-size: 40px;
+    font-size: 24px; 
     font-weight: 800;
 }
+
+.listTitle img {
+    max-height: 40px; 
+    margin-right: 10px; /
+}
+
 
 .listItems {
     padding-top: 16px;
@@ -49,7 +55,7 @@ hr{
     margin-left: 20px;
     color: black;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 100;
 }
 
 .listGrid {
@@ -122,11 +128,20 @@ hr{
     text-decoration: none;
 }
 
-.mainLinks img {
-    width: 60px;
-    height: 60px;
+.mainImage img {
+    max-width: 100%; /* Adjust the image width */
+    height: auto;
 }
 
+.listGrid img {
+    max-width: 100%; /* Adjust the image width */
+    height: auto;
+}
+
+.mainLinks img {
+    width: 40px; /* Adjust the image width */
+    height: 40px; /* Adjust the image height */
+}
 .link{
     display: flex;
     align-items: center;
@@ -140,9 +155,35 @@ hr{
 .form-text {
     margin-left: 20px;
     color: black;
-    font-size: 30px;
+    font-size: 18px;
     font-weight: 500;
 }
+
+.paginaInicial-title {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.paginaInicial-description {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.listTitle p {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.listItems a {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.mainLinks span {
+    font-size: 18px;
+    font-weight: 600;
+}
+
 </style>
 <div class="containerHeader">
     <div class="mainImage">
