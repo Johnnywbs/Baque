@@ -17,6 +17,11 @@ class TestCase(models.Model):
     input_data = models.TextField()
     expected_output = models.TextField()
 
+class TestCaseGenerator(models.Model):
+    problem = models.ForeignKey("Problem", on_delete=models.CASCADE)
+    generator_code = models.FileField(upload_to="generators/")
+    number_of_testcases = models.IntegerField(default=10)
+
 class Submission(models.Model):
     problem = models.ForeignKey("Problem", on_delete=models.CASCADE)
     code = models.FileField(upload_to="code/")

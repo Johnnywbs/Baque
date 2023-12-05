@@ -47,3 +47,21 @@ def run_test_cases(sender, instance, **kwargs):
                 'verdict': verdict
             }
         )
+
+from .models import TestCaseGenerator, Problem
+
+@receiver(post_save, sender=TestCaseGenerator)
+def generate_testcases(sender, instance, **kwargs):
+    for i in range(instance.number_of_testcases):
+        with open(instance.generator_code.path, 'r') as file: code = file.read()
+        generated_input, err = run_code(code, '', 1000)
+        if err: continue
+
+        expected_output, err = run_code(instance.problem.model_solution, generated_input, instance.problem.timelimit)
+        if err: continue
+
+        TestCase.objects.create(
+            problem=instance.problem,
+            input_data=generated_input,
+            expected_output=expected_output
+        )

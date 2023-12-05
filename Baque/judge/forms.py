@@ -1,5 +1,5 @@
 from django import forms
-from .models import Problem, Submission, TestCase
+from .models import Problem, Submission, TestCase, TestCaseGenerator
 
 class TestCaseForm(forms.ModelForm):
     class Meta:
@@ -23,3 +23,9 @@ class SubmissionForm(forms.ModelForm):
     class Meta:
         model = Submission
         fields = ['code']
+
+class TestCaseGeneratorForm(forms.ModelForm):
+    class Meta:
+        model = TestCaseGenerator
+        fields = ['generator_code', 'number_of_testcases']
+

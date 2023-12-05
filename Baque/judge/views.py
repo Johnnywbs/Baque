@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Problem, Submission, Result
-from .forms import ProblemForm, ProblemFormSet, SubmissionForm
+from .forms import ProblemForm, ProblemFormSet, SubmissionForm, TestCaseGeneratorForm
 from django.db.models import Count, Q
 
 def index(request):
@@ -48,8 +48,6 @@ def edit(request, id=None):
 
     return render(request, "judge/edit.html", {'form': form, 'formset': formset, 'problem': problem})
 
-
-
 def problem(request, id):
     p = get_object_or_404(Problem, pk=id)
 
@@ -64,6 +62,19 @@ def problem(request, id):
         form = SubmissionForm()
 
     return render(request, "judge/problem.html", {'problem': p, 'form': form})
+
+def add_generator(request, id):
+    problem = get_object_or_404(Problem, pk=id)
+    if request.method == "POST":
+        form = TestCaseGeneratorForm(request.POST, request.FILES)
+        if form.is_valid():
+            generator = form.save(commit=False)
+            generator.problem = problem
+            generator.save()
+            return redirect('problem', id=id)
+    else:
+        form = TestCaseGeneratorForm()
+    return render(request, 'judge/add_generator.html', {'form':form, 'problem':problem})
 
 def submission(request, id):
     submission = get_object_or_404(Submission, pk=id)
