@@ -29,6 +29,7 @@ def run_test_cases(sender, instance, **kwargs):
         actual_output, err = run_code(code, input_data, submission.problem.timelimit)
         if err == 'TLE':
             verdict = 'time_limit_exceeded'
+            actual_output = err
         elif err == 'RTE':
             verdict = 'runtime_error'
             actual_output = err
