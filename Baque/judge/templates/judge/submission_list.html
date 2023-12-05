@@ -9,7 +9,6 @@
           <th>ID</th>
           <th>Problem Name</th>
           <th>Results</th>
-          <th>Verdict</th>
           <th>View</th>
         </tr>
       </thead>
@@ -25,6 +24,7 @@
               {% endif %}
               {{ s.passed_results }}/{{ s.total_results }}
             </td>
+
             <td>
               <a href="{% url 'submission' s.id %}" class="btn btn-primary">View</a>
             </td>
